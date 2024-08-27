@@ -1,0 +1,15 @@
+to run the goose you will need to go into the schema folder and run 
+
+goose postgres postgres://dbusername:dbpassworrd@localhost:5432/rssagg up
+
+
+to run the sqlc it will be in the root folder run
+so for this project it will be root  golangrssaggregator
+run sqlc generate this will generate all the data for sqlc
+
+
+the folder structure for goose and sql
+
+Include an .env file
+PORT=
+DB_URL=
