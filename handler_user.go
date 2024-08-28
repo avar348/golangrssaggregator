@@ -7,12 +7,13 @@ import (
 	"time"
 
 	"github.com/avar348/golangrssaggregator/internal/database"
+	"github.com/avar348/golangrssaggregator/models"
 	"github.com/google/uuid"
 )
 
 func (apiConfic *apiConfic) handleCreateUser(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
-		Name string `json:name`
+		Name string `json:"name"`
 	}
 	decoder := json.NewDecoder(r.Body)
 	params := parameters{}
@@ -31,5 +32,5 @@ func (apiConfic *apiConfic) handleCreateUser(w http.ResponseWriter, r *http.Requ
 		respondWithError(w, 400, fmt.Sprintf("Couldnt create user: %v", err))
 	}
 
-	respondWithJson(w, 200, user)
+	respondWithJson(w, 200, models.DatabaseUserToUser(user))
 }
