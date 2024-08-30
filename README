@@ -1,3 +1,4 @@
+
 Command Line Tools to install
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 go install github.com/pressly/goose/v3/cmd/goose@latest
@@ -6,10 +7,12 @@ go install github.com/pressly/goose/v3/cmd/goose@latest
 to run the goose you will need to go into the schema folder and run
  
 
-goose postgres postgres://dbusername:dbpassworrd@localhost:5432/rssagg up
+goose postgres postgres://dbusername:dbpassworrd@localhost:5432/databasename up
 
 
 to run the sqlc it will be in the root folder run
+
+run 
 so for this project it will be root  golangrssaggregator
 run sqlc generate this will generate all the data for sqlc
 
