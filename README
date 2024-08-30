@@ -1,10 +1,12 @@
 
 Command Line Tools to install
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+then run sqlc version to verify that its installed
 go install github.com/pressly/goose/v3/cmd/goose@latest
-
+then run goose -version
 
 to run the goose you will need to go into the schema folder and run
+
  
 
 goose postgres postgres://dbusername:dbpassworrd@localhost:5432/databasename up
