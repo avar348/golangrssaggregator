@@ -1,10 +1,11 @@
-will need to run in the root folder
 
+Command Line Tools to install
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
-
 go install github.com/pressly/goose/v3/cmd/goose@latest
-to run the goose you will need to go into the schema folder and run 
 
+
+to run the goose you will need to go into the schema folder and run
+ 
 
 goose postgres postgres://dbusername:dbpassworrd@localhost:5432/databasename up
 
