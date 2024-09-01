@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/avar348/golangrssaggregator/internal/auth"
 	"github.com/avar348/golangrssaggregator/internal/database"
 	"github.com/avar348/golangrssaggregator/models"
 	"github.com/google/uuid"
@@ -36,14 +35,7 @@ func (apiConfic *apiConfic) handleCreateUser(w http.ResponseWriter, r *http.Requ
 	respondWithJson(w, 200, models.DatabaseUserToUser(user))
 }
 
-func (apiConfic *apiConfic) handleGetUser(w http.ResponseWriter, r *http.Request) {
-	apiKey, err := auth.GetAPIKey(r.Header)
-	if err != nil {
-		respondWithError(w, 403, fmt.Sprintf("Could not validate user: %v", err))
-	}
-	user, err := apiConfic.DB.GetUserByApiKey(r.Context(), apiKey)
-	if err != nil {
-		respondWithError(w, 400, fmt.Sprintf("Coudlnt get user: %v", err))
-	}
+func (apiConfic *apiConfic) handleGetUser(w http.ResponseWriter, r *http.Request, user database.User) {
+
 	respondWithJson(w, 200, models.DatabaseUserToUser(user))
 }
