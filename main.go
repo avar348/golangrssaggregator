@@ -57,6 +57,7 @@ func main() {
 	v1Router.Get("/error", handlerError)
 	v1Router.Post("/users", apiConfic.handleCreateUser)
 	v1Router.Get("/users", apiConfic.middlewareAuth(apiConfic.handleGetUser))
+	v1Router.Post("/feeds", apiConfic.middlewareAuth(apiConfic.handleCreateFeed))
 
 	router.Mount("/v1", v1Router)
 
