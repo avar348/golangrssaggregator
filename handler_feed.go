@@ -38,6 +38,15 @@ func (apiConfic *apiConfic) handleCreateFeed(w http.ResponseWriter, r *http.Requ
 	respondWithJson(w, 200, models.DatabaseFeedtoFeed(feed))
 }
 
+func (apiConfic *apiConfic) getAllFeeds(w http.ResponseWriter, r *http.Request) {
+	feeds, err := apiConfic.DB.GetAllFeeds(r.Context())
+
+	if err != nil {
+		respondWithError(w, 400, "Couldnt retrieve feeds")
+	}
+	respondWithJson(w, 200, models.DatabaseFeedstoFeeds(feeds))
+}
+
 // func (apiConfic *apiConfic) handleGetUser(w http.ResponseWriter, r *http.Request, user database.User) {
 
 // 	respondWithJson(w, 200, models.DatabaseUserToUser(user))

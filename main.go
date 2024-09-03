@@ -57,8 +57,9 @@ func main() {
 	v1Router.Get("/error", handlerError)
 	v1Router.Post("/users", apiConfic.handleCreateUser)
 	v1Router.Get("/users", apiConfic.middlewareAuth(apiConfic.handleGetUser))
-	v1Router.Post("/feeds", apiConfic.middlewareAuth(apiConfic.handleCreateFeed))
 
+	v1Router.Post("/feeds", apiConfic.middlewareAuth(apiConfic.handleCreateFeed))
+	v1Router.Get("/feeds", apiConfic.getAllFeeds)
 	router.Mount("/v1", v1Router)
 
 	srv := &http.Server{
