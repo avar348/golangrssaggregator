@@ -60,6 +60,9 @@ func main() {
 
 	v1Router.Post("/feeds", apiConfic.middlewareAuth(apiConfic.handleCreateFeed))
 	v1Router.Get("/feeds", apiConfic.getAllFeeds)
+	v1Router.Post("/feed_follows", apiConfic.middlewareAuth(apiConfic.handleCreateFeedFollow))
+	v1Router.Get("/feed_follows", apiConfic.middlewareAuth(apiConfic.handleGetFeedFollows))
+	v1Router.Delete("/feed_follows/{id}", apiConfic.middlewareAuth(apiConfic.handleDeleteFeedFollows))
 	router.Mount("/v1", v1Router)
 
 	srv := &http.Server{
