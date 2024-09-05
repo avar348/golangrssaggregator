@@ -34,8 +34,25 @@ func (apiConfic *apiConfic) handleCreateFeed(w http.ResponseWriter, r *http.Requ
 	if err != nil {
 		respondWithError(w, 400, fmt.Sprintf("Couldnt create feed: %v", err))
 	}
+	feedFollow, err := apiConfic.DB.CreateFeedFollow(r.Context(), database.CreateFeedFollowParams{
+		ID:        uuid.New(),
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+		UserID:    user.ID,
+		FeedID:    feed.ID,
+	})
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Couldn't create feed follow")
+		return
+	}
 
-	respondWithJson(w, 200, models.DatabaseFeedtoFeed(feed))
+	respondWithJson(w, http.StatusOK, struct {
+		Feed       models.Feed       `json:"feed"`
+		FeedFollow models.FeedFollow `json:"feed_follow"`
+	}{
+		Feed:       models.DatabaseFeedtoFeed(feed),
+		FeedFollow: models.DatabaseFeedFollowtoFeedFollow(feedFollow),
+	})
 }
 
 func (apiConfic *apiConfic) getAllFeeds(w http.ResponseWriter, r *http.Request) {
