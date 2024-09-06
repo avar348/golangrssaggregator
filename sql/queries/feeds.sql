@@ -10,8 +10,8 @@ RETURNING *;
 SELECT * FROM feeds;
 
 
--- name: GetNextFeedToFetch :one
-SELECT * from feeds order by last_fetched_at asc nulls first limit 1;
+-- name: GetNextFeedsToFetch :many
+SELECT * from feeds order by last_fetched_at asc nulls first limit $1;
 
 
 -- name: MarkFeedAsFetched :one
