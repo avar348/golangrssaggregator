@@ -21,12 +21,11 @@ type apiConfic struct {
 
 func main() {
 
-	feed, err := fetchFeed("https://blog.boot.dev/index.xml")
-	if err != nil {
-		log.Fatal(err)
-	}
+	// _, err := fetchFeed("https://blog.boot.dev/index.xml")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	fmt.Println(feed)
 	godotenv.Load()
 	portString := os.Getenv("PORT")
 	if portString == "" {
