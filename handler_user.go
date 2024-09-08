@@ -39,3 +39,17 @@ func (apiConfic *apiConfic) handleGetUser(w http.ResponseWriter, r *http.Request
 
 	respondWithJson(w, 200, models.DatabaseUserToUser(user))
 }
+
+func (apiConfic *apiConfic) handleGetPostForUser(w http.ResponseWriter, r *http.Request, user database.User) {
+	post, err := apiConfic.DB.GetPostForUser(r.Context(), database.GetPostForUserParams{
+		UserID: user.ID,
+		Limit:  10,
+	})
+
+	if err != nil {
+		respondWithError(w, 400, fmt.Sprintf("Couldnt get Post: %v", err))
+	}
+
+	respondWithJson(w, 200, models.DatabasePoststoPosts(post))
+
+}

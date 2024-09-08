@@ -65,6 +65,7 @@ func main() {
 	v1Router.Get("/error", handlerError)
 	v1Router.Post("/users", apiConfic.handleCreateUser)
 	v1Router.Get("/users", apiConfic.middlewareAuth(apiConfic.handleGetUser))
+	v1Router.Get("/posts", apiConfic.middlewareAuth(apiConfic.handleGetPostForUser))
 
 	v1Router.Post("/feeds", apiConfic.middlewareAuth(apiConfic.handleCreateFeed))
 	v1Router.Get("/feeds", apiConfic.getAllFeeds)
